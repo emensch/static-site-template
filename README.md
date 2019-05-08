@@ -17,11 +17,14 @@ npm install
 
 **And then...**
 
+### Development ###
 To run the built-in webpack dev server (with HMR!):
 ```bash
 npm start 
 ```
+Your site will be served on `http://localhost:1337/` :innocent:
 
+### Production ###
 To create a production-ready bundle:
 ```bash
 npm run build

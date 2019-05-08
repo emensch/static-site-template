@@ -46,6 +46,9 @@ const config = {
         ]
       }
     ]
+  },
+  devServer: {
+    port: 1337
   }
 }
 
