@@ -1,2 +1,26 @@
 # static-site-template
-Boilerplate for creation of static websites with TypeScript, SCSS, and HTML.
+Boilerplate template for the creation of static websites with TypeScript, SCSS, and HTML.
+
+## Installation
+```bash
+git clone https://github.com/emensch/static-site-template
+```
+```bash
+cd static-site-template
+```
+```bash
+npm install
+```
+
+## Usage
+To run the built-in webpack dev server (with HMR!):
+```bash
+npm start 
+```
+
+To create a production-ready bundle:
+```bash
+npm run build
+```
+
+To deploy, serve the contents of dist/ from a web server. 
