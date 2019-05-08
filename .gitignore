@@ -4,3 +4,6 @@ npm-debug.log
 
 # macOS
 .DS_Store
+
+# Built files
+dist

@@ -1,0 +1,11 @@
+{
+  "include": [
+    "./src/scripts/**/*.ts"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "module": "es6",
+    "target": "es6",
+    "allowJs": true
+  },
+}
