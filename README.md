@@ -13,6 +13,10 @@ npm install
 ```
 
 ## Usage
+`src/` contains all of your site assets: scripts, styles, etc.
+
+**And then...**
+
 To run the built-in webpack dev server (with HMR!):
 ```bash
 npm start 
@@ -23,4 +27,4 @@ To create a production-ready bundle:
 npm run build
 ```
 
-To deploy, serve the contents of dist/ from a web server. 
+To deploy, serve the contents of `dist/` from a web server!
