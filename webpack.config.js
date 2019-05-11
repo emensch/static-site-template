@@ -44,9 +44,20 @@ const config = {
           { loader: "css-loader" },
           { loader: "sass-loader" },
         ]
+      },
+      {
+        test: /\.(eot|ttf|otf|woff|woff2|svg)$/,
+        use: [{
+          loader: "file-loader",
+          options: {
+            outputPath: "./fonts/",
+            name: "[name].[ext]"
+          }
+        }]
       }
     ]
   },
+  
   devServer: {
     port: 1337
   }
