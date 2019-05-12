@@ -3,7 +3,31 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const webpack = require('webpack');
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin")
+const webpack = require("webpack");
+
+const devMode = process.env.NODE_ENV !== "production";
+const basePath = path.resolve(__dirname, "dist");
+
+let plugins = [
+  new MiniCssExtractPlugin({
+    filename: "[name].[hash].css"
+  }),
+  new HtmlWebpackPlugin({
+    template: "./src/index.html"
+  }),
+  new OptimizeCssAssetsWebpackPlugin(),
+  new ForkTsCheckerWebpackPlugin(),
+  new CleanWebpackPlugin(),
+]
+
+const devPlugins = [
+  new webpack.HotModuleReplacementPlugin()
+]
+
+if (devMode) {
+  plugins.concat(devPlugins);
+}
 
 const config = {
   entry: [
@@ -15,19 +39,10 @@ const config = {
   },
   output: {
     filename: "main.[hash].js",
-    path: path.resolve(__dirname, "dist")
+    path: basePath,
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].[hash].css"
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    }),
-    new ForkTsCheckerWebpackPlugin(),
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  devtool: devMode ? "eval-source-map" : "none",
+  plugins,
   module: {
     rules: [
       {
@@ -41,8 +56,14 @@ const config = {
         test: /\.s[ac]ss$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          { loader: "css-loader" },
-          { loader: "sass-loader" },
+          { 
+            loader: "css-loader",
+            options: { sourceMap: devMode }
+          },
+          { 
+            loader: "sass-loader",
+            options: { sourceMap: devMode }
+          },
         ]
       },
       {
@@ -57,9 +78,9 @@ const config = {
       }
     ]
   },
-  
   devServer: {
-    port: 1337
+    port: 1337,
+    hot: true
   }
 }
 
